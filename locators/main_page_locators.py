@@ -7,7 +7,6 @@ class MainPageLocators:
         self.USERNAME = (By.ID, "user[login]-footer")
         self.EMAIL = (By.ID, "user[email]-footer")
         self.PASSWORD = (By.ID, "user[password]-footer")
-        self.SIGN_UP_BUTTON = (By.CLASS_NAME, "btn-mktg btn-primary-mktg btn-block mt-n1")
         self.MARKETPLACE_LINK = (By.CSS_SELECTOR, "body > div.position-relative.js-header-wrapper > header > div > div."
                                                   "HeaderMenu.HeaderMenu--logged-out.position-fixed.top-0.right-0."
                                                   "bottom-0.height-fit.position-lg-relative.d-lg-flex.flex-justify-"

@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions
 from locators.main_page_locators import MainPageLocators
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from users.user import User
 
 
 URL = "https://github.com/"
@@ -23,10 +24,10 @@ class MainPage:
         element.send_keys(search_string)
         element.send_keys(Keys.RETURN)
 
-    def username(self, input_string: str):
+    def username(self, user: User):
         element = self.wait.until(expected_conditions.presence_of_element_located(self.locators.USERNAME))
         element.clear()
-        element.send_keys(input_string)
+        element.send_keys(user.username)
         return element
 
     def check_input_field(self, id_check_input, checking_string):
@@ -37,21 +38,17 @@ class MainPage:
             return True
         return checking_string not in source
 
-    def email(self, input_string: str):
+    def email(self, user: User):
         element = self.wait.until(expected_conditions.presence_of_element_located(self.locators.EMAIL))
         element.clear()
-        element.send_keys(input_string)
+        element.send_keys(user.email)
         return element
 
-    def password(self, input_string: str):
+    def password(self, user: User):
         element = self.wait.until(expected_conditions.presence_of_element_located(self.locators.PASSWORD))
         element.clear()
-        element.send_keys(input_string)
+        element.send_keys(user.password)
         element.send_keys(Keys.RETURN)
-
-    def sign_up_button_activate(self):
-        element = self.wait.until(expected_conditions.presence_of_element_located(self.locators.SIGN_UP_BUTTON))
-        element.click()
 
     def activate_marketplace(self):
         element = self.wait.until(expected_conditions.presence_of_element_located(self.locators.MARKETPLACE_LINK))
@@ -59,3 +56,8 @@ class MainPage:
 
     def check_returns_on_main_page(self, url):
         return url == self.driver.current_url
+
+    def full_registration(self, user: User):
+        self.username(user)
+        self.email(user)
+        self.password(user)
